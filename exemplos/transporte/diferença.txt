@@ -1,0 +1,72 @@
+Processo
+==========
+
+Definição: Um processo é uma instância de um programa em execução. Ele possui seu próprio espaço de memória, incluindo pilha (stack), heap, e segmentação de código.
+
+Memória: Os processos têm um espaço de memória independente. Isso significa que a memória de um processo não pode ser acessada diretamente por outro processo sem mecanismos específicos de comunicação entre processos (IPC - Inter-Process Communication).
+
+Isolamento: Devido ao espaço de memória independente, os processos são isolados uns dos outros. Se um processo falha, ele não afeta diretamente outros processos.
+
+Overhead: Criar e gerenciar processos envolve mais overhead em termos de recursos do sistema, pois cada processo tem sua própria tabela de processos, memória, etc.
+
+Comunicação: A comunicação entre processos é geralmente mais complexa e lenta, exigindo o uso de mecanismos como pipes, sockets, shared memory, ou outras formas de IPC.
+
+Exemplo: Cada instância de um navegador web aberto pode ser um processo separado.
+
+Thread
+=======
+Definição: Uma thread, ou linha de execução, é a menor unidade de processamento que pode ser realizada de forma independente. Threads são executadas dentro de um processo.
+
+Memória: As threads de um mesmo processo compartilham o mesmo espaço de memória. Isso inclui variáveis globais e heap. No entanto, cada thread tem sua própria pilha (stack) para armazenar variáveis locais e registros de função.
+
+Compartilhamento: Devido ao compartilhamento de espaço de memória, as threads podem se comunicar mais facilmente e rapidamente entre si comparado aos processos. No entanto, isso também significa que as threads não são isoladas; uma thread pode afetar a memória de outras threads dentro do mesmo processo.
+
+Overhead: Criar e gerenciar threads envolve menos overhead comparado aos processos, pois elas compartilham o mesmo espaço de memória e recursos do processo pai.
+
+Comunicação: A comunicação entre threads é mais eficiente e simples, uma vez que elas podem acessar diretamente o mesmo espaço de memória.
+
+Exemplo: Dentro de um navegador web, diferentes tarefas como carregar uma página, executar scripts, e renderizar a interface podem ser executadas em threads separadas dentro do mesmo processo.
+
+Comparação Resumida
+====================
+
+Características:
+	1 Para Processo
+	2 Para Thread
+
+Espaço de Memória
+	1 - Independente	
+	2 - Compartilhado
+
+Overhead
+	1 - Maior
+	2 - Menor
+
+Comunicação	
+	1 - IPC (mais complexo)	
+	2 - Diretamente, através da memória compartilhada (mais simples)
+
+Isolamento
+	1 - Sim
+	2 - Não
+
+Segurança
+	1 - Maior (devido ao isolamento)
+	2 - Menor (devido ao compartilhamento de memória)
+
+Criação/Destruição	
+	1 - Mais lento	
+	2 - Mais rápido
+
+Quando Usar Cada Um
+===================
+
+Processos são ideais para:
+	1 - Aplicações que requerem isolamento de memória por razões de segurança.
+	2 - Aplicações que precisam de estabilidade, onde a falha de um componente não deve afetar outros componentes.
+	3 - Aplicações que precisam executar tarefas que podem rodar de forma completamente independente.
+
+Threads são ideais para:
+	1 - Aplicações que requerem alta performance com menor overhead.
+	2 - Tarefas que precisam compartilhar informações rapidamente e frequentemente.
+	3 - Operações que devem ser realizadas simultaneamente dentro do mesmo contexto de aplicação, como em servidores web ou interfaces gráficas.
